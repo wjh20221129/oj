@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<string.h>
+typedef struct stu
+{
+	char num[30];
+	char name[40];
+	int a, b, c;
+}STU;
+int main()
+{
+	int t,m, n, count = 0;
+	STU a;
+	STU stu[101],st1;
+	scanf("%d", &n);
+	for (m = 0; m < n; m++)
+	{
+		scanf("%s%s%d%d%d", stu[m].num, stu[m].name, &stu[m].a, &stu[m].b, &stu[m].c);
+	}
+	scanf("%s", st1.num);
+	for (n = 0; n < 3; n++)
+	{
+		if (strcmp(st1.num, stu[n].num) == 0)
+		{
+			count = 1;
+			t = n;
+		}
+	}
+	if (count == 0)
+	{
+		printf("error");
+		return 0;
+	}
+	for (m = 0; m < n; m++)
+	{
+		if (m == t)
+		{
+			++m;
+		}
+		printf("%s %s %d %d %d", stu[m].num, stu[m].name, stu[m].a, stu[m].b, stu[m].c);
+		printf("\n");
+	}
+	return 0;
+}
