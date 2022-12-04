@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<stdio.h>
+int  shugen(int n)
+{
+	int x,i,sum=0;
+	x = log10(n)+1;
+	int t = n,a[20];
+	for (i = 0; i < x; i++)
+	{
+		a[i] = n % 10;
+		n /= 10;
+	}
+	for (i = 0; i < x; i++)
+	{
+		sum += a[i];
+	}
+	if (sum >= 10)
+		return shugen(sum);
+	return sum;
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	printf("%d", shugen(n));
+}
