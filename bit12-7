@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct Stu
+{
+	char name[20];
+	int age;
+};
+int sort_age(const void* e1, const void* e2)               //void*类型增加了代码普适性（传入的参数类型不被限制）
+{
+	return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;//e1与e2均为void*类型，需要强制类型转换
+}
+int sort_name(const void* e1, const void* e2)
+{
+	return strcmp(((struct Stu*)e1)->name, ((struct Stu*)e2)->name);
+}
+int main()
+{
+	struct Stu s[3] = { {"zhangsan",30},{"lisi",34},{"wangwu",20} };
+	int (*pname)(const void*, const void*) = sort_name;
+	int (*page)(const void*, const void*) = sort_age;
+	int sz = sizeof(s) / sizeof(s[0]);
+	qsort(s, sz, sizeof(s[0]), pname);
+	printf("按照名字排序:\n");
+	for (int i = 0; i < sz; i++)
+		printf("%s %d\n", s[i].name, s[i].age);
+	qsort(s, sz, sizeof(s[0]), page);
+	printf("按照年龄排序:\n");
+	for (int i = 0; i < sz; i++)
+		printf("%s %d\n", s[i].name, s[i].age);
+
+}
