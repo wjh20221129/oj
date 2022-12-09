@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<assert.h>
+char *my_strcpy(char* pa, const char* pb)
+{
+	char* pc = pa;
+	assert(pb != NULL);
+	assert(pa != NULL);
+	while (*pa++ = *pb++)
+	{
+		;
+	}
+	return pc;
+}
+int main()
+{
+	char pa[100];
+	char pb[100];
+	gets_s(pa);
+	gets_s(pb);
+	printf("%s",my_strcpy(pa, pb));
+	return 0;
+}
