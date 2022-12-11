@@ -1,0 +1,58 @@
+
+#include<stdio.h>
+void  increase(int arr[], int n, int i)
+{
+	int x;
+	int f = 0;
+	arr[n] = i;
+	if (arr[1] < arr[2])
+	{
+		for (int t = 0; t < n; t++)
+		{
+			for (int m=0; m < n + 1 - t - 1; m++)
+			{
+				if (arr[m] > arr[m + 1])
+				{
+					int y = arr[m];
+					arr[m] = arr[m + 1];
+					arr[m + 1] = y;
+				}
+			}
+		}
+	}
+	else
+	{
+		for (int t = 0; t < n; t++)
+		{
+			for (int m=0; m < n + 1 - t - 1; m++)
+			{
+				if (arr[m] < arr[m + 1])
+				{
+					int y = arr[m];
+					arr[m] = arr[m + 1];
+					arr[m + 1] = y;
+				}
+			}
+		}
+	}
+}
+void PrintArr(int arr[], int n)
+{
+	for (int i = 0; i < n + 1; i++)
+		if (i < n)
+			printf("%d ", arr[i]);
+		else if (i == n)
+			printf("%d", arr[i]);
+}
+int main()
+{
+	int n, x, i, t;
+	int arr[15];
+	scanf("%d", &n);
+	for (i = 0; i < n; i++)
+		scanf("%d", &arr[i]);
+	scanf("%d", &x);
+	increase(arr, n, x);
+	PrintArr(arr, n);
+	return 0;
+}
