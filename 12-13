@@ -1,0 +1,73 @@
+#include<stdio.h>
+int buer(int arr[100][100], int n, int* px, int* py)
+{
+	int i, t,sum1=0,sum2=0;
+	int z=1, a=1;
+	for (i = 0; i < n; i++)
+	{
+		sum1 = 0;
+		for (t = 0; t < n; t++)
+		{
+			sum1 += arr[i][t];
+		}
+		if (sum1 % 2 != 0)
+		{
+			z = 0;
+			*px = i;
+		}
+	}
+	for (i = 0; i < n; i++)
+	{
+		sum2 = 0;
+		for (t = 0; t < n; t++)
+		{
+			sum2 += arr[t][i];
+		}
+		if (sum2 % 2 != 0)
+		{
+			a = 0;
+			*py = i;
+		}
+	}
+	if (a == 0 || z == 0)
+		return 0;
+	return 1;
+}
+int main()
+{
+	int count = 0,coun=0;
+	int n,i,t,x,y,arr[100][100],*px=&x,*py=&y;
+	scanf("%d", &n);
+	for (i = 0; i < n; i++)
+	{
+		count = 1;
+		for (t = 0; t < n; t++)
+			scanf("%d", &arr[i][t] );
+	}
+	if (buer(arr, n, px, py) == 1)
+		printf("OK");
+	else
+	{
+		if (arr[x][y] != 0)
+		{
+			arr[x][y] = 0;
+			if (buer(arr, n, px, py) == 1)
+			{
+				coun = 1;
+				printf("Change bit(%d,%d)",x,y);
+			}
+		}
+		else
+		{
+			arr[x][y] = 1;
+			if (buer(arr, n, px, py) == 1)
+			{
+				count = 1;
+				printf("Change bit(%d,%d)",x,y);
+			}
+		}
+		if (count == 0&&coun==0)
+			printf("Corrupt");
+	}
+	return 0;
+}
